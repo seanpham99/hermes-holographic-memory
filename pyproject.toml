@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hermes-holographic-memory"
+version = "1.0.0"
+description = "Standalone Hermes Agent memory provider: HRR fact store with BM25 hybrid recall, trust scoring, white-box export, L2 scenarios. No LLM runtime cost."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Son Pham (seanpham99)" }]
+dependencies = ["numpy"]
+
+[tool.setuptools]
+packages = ["holographic"]
