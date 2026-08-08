@@ -18,13 +18,16 @@ All call `load_memory_provider("hrr_memory")` — they resolve the **active** pr
 ## Install
 
 ```bash
-# symlink the cron dir into ~/.hermes/scripts (after install.sh)
-ln -sfn "$(pwd)/cron" ~/.hermes/scripts/hermes-holographic-memory-cron
-# or copy:
+# install.sh copies cron/*.py into ~/.hermes/scripts/ (see repo root)
+./install.sh
+# or manually:
 cp cron/*.py ~/.hermes/scripts/
+chmod +x ~/.hermes/scripts/*.py
 ```
 
-The Hermes cron job `memory-housekeeping` references `~/.hermes/scripts/memory-housekeeping-minibatch.py` by name — keep the symlink target or copy the scripts so that path resolves.
+**COPIES, not symlinks.** The Hermes cron runner (`cron/scheduler.py`) resolves the script path and blocks any file whose realpath escapes `~/.hermes/scripts/` — a symlink to this repo fails at fire time with "Blocked: script path resolves outside the scripts directory". Re-running `install.sh` refreshes the copies, so this repo stays the source of truth.
+
+The Hermes cron job `memory-housekeeping` references `~/.hermes/scripts/memory-housekeeping-minibatch.py` by name.
 
 ## Notes
 

@@ -16,16 +16,20 @@ fi
 ln -sfn "$REPO_DIR/hrr_memory" "$PLUGIN_DIR/hrr_memory"
 echo "Installed hrr_memory -> $PLUGIN_DIR/hrr_memory"
 
-# --- Cron scripts (Hermes cron references ~/.hermes/scripts/memory-housekeeping-minibatch.py) ---
+# --- Cron scripts (Hermes cron references ~/.hermes/scripts/<name>) ---
+# COPIES, not symlinks: the Hermes cron runner resolves the script path and
+# rejects any file whose realpath escapes ~/.hermes/scripts/ (symlink escape
+# guard in cron/scheduler.py). A symlinked script fails at fire time with
+# "Blocked: script path resolves outside the scripts directory". Re-running
+# install.sh refreshes the copies, so the repo stays the source of truth.
 SCRIPTS_DIR="$HERMES_HOME/scripts"
 mkdir -p "$SCRIPTS_DIR"
-ln -sfn "$REPO_DIR/cron" "$SCRIPTS_DIR/hermes-holographic-memory-cron"
-echo "Linked cron scripts -> $SCRIPTS_DIR/hermes-holographic-memory-cron"
 for f in cron/*.py; do
   base="$(basename "$f")"
-  ln -sfn "$REPO_DIR/$f" "$SCRIPTS_DIR/$base"
+  cp "$REPO_DIR/$f" "$SCRIPTS_DIR/$base"
+  chmod +x "$SCRIPTS_DIR/$base"
 done
-echo "Symlinked each cron script into $SCRIPTS_DIR"
+echo "Copied cron scripts into $SCRIPTS_DIR"
 
 echo
 echo "Ensure ~/.hermes/config.yaml has:"
