@@ -13,4 +13,4 @@ authors = [{ name = "Son Pham (seanpham99)" }]
 dependencies = ["numpy"]
 
 [tool.setuptools]
-packages = ["holographic"]
+packages = ["hrr_memory"]

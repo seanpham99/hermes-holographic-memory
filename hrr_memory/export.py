@@ -110,7 +110,7 @@ def build_scenarios(facts: list[dict]) -> list[dict]:
 
 def main() -> int:
     import argparse
-    from plugins.memory.holographic.store import MemoryStore
+    from plugins.memory.hrr_memory.store import MemoryStore
     ap = argparse.ArgumentParser(description="Export holographic memory artifacts")
     ap.add_argument("--db", default=str(Path.home() / ".hermes" / "memory_store.db"))
     ap.add_argument("--out", default=str(Path.home() / ".hermes" / "artifact" / "memory-export"))

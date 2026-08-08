@@ -1,7 +1,7 @@
 import pytest
 from pathlib import Path
-from holographic.store import MemoryStore
-from holographic.holographic import phases_to_bytes, bytes_to_phases
+from hrr_memory.store import MemoryStore
+from hrr_memory.hrr import phases_to_bytes, bytes_to_phases
 
 def test_store_default_dim_is_4096(tmp_path):
     store = MemoryStore(db_path=str(tmp_path / "m.db"))

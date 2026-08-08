@@ -1,5 +1,5 @@
-from holographic.store import MemoryStore
-from holographic.export import build_scenarios, export_artifacts
+from hrr_memory.store import MemoryStore
+from hrr_memory.export import build_scenarios, export_artifacts
 
 def test_build_scenarios_groups_by_entity_overlap(tmp_path):
     s = MemoryStore(db_path=str(tmp_path / "m.db"))

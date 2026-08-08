@@ -1,6 +1,6 @@
 def test_bm25_ranks_exact_match_first(tmp_path):
-    from holographic.store import MemoryStore
-    from holographic.retrieval import FactRetriever
+    from hrr_memory.store import MemoryStore
+    from hrr_memory.retrieval import FactRetriever
     s = MemoryStore(db_path=str(tmp_path / "m.db"))
     s.add_fact("deploy deploy deploy the workflow", category="ops")
     s.add_fact("deploy workflow", category="ops")
@@ -10,8 +10,8 @@ def test_bm25_ranks_exact_match_first(tmp_path):
     assert res[0]["score"] > res[1]["score"]
 
 def test_bm25_score_field_present(tmp_path):
-    from holographic.store import MemoryStore
-    from holographic.retrieval import FactRetriever
+    from hrr_memory.store import MemoryStore
+    from hrr_memory.retrieval import FactRetriever
     s = MemoryStore(db_path=str(tmp_path / "m.db"))
     s.add_fact("alpha beta gamma", category="ops")
     r = FactRetriever(s)
@@ -19,8 +19,8 @@ def test_bm25_score_field_present(tmp_path):
     assert "bm25" in res[0] or res[0]["score"] > 0
 
 def test_single_hit_fts_rank_is_one(tmp_path):
-    from holographic.store import MemoryStore
-    from holographic.retrieval import FactRetriever
+    from hrr_memory.store import MemoryStore
+    from hrr_memory.retrieval import FactRetriever
     s = MemoryStore(db_path=str(tmp_path / "m.db"))
     s.add_fact("alpha beta gamma", category="ops")
     r = FactRetriever(s)

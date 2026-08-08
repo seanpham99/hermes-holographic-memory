@@ -11,7 +11,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[4]))  # repo root
 
-from plugins.memory.holographic.store import MemoryStore
+from plugins.memory.hrr_memory.store import MemoryStore
 
 def main() -> int:
     ap = argparse.ArgumentParser()

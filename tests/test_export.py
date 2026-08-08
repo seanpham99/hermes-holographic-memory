@@ -1,5 +1,5 @@
-from holographic.store import MemoryStore
-from holographic.export import export_artifacts
+from hrr_memory.store import MemoryStore
+from hrr_memory.export import export_artifacts
 
 def test_export_writes_files(tmp_path):
     s = MemoryStore(db_path=str(tmp_path / "m.db"))

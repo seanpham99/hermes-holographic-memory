@@ -9,9 +9,9 @@ import threading
 from pathlib import Path
 
 try:
-    from . import holographic as hrr
+    from . import hrr as hrr
 except ImportError:
-    import holographic as hrr  # type: ignore[no-redef]
+    import hrr as hrr  # type: ignore[no-redef]
 
 _SCHEMA = """
 CREATE TABLE IF NOT EXISTS facts (
@@ -272,7 +272,7 @@ class MemoryStore:
             # natural-language queries. Reuse the retriever's sanitizer
             # (stopword drop + OR-join content tokens). Imported lazily to
             # avoid a store->retrieval import cycle.
-            from plugins.memory.holographic.retrieval import FactRetriever
+            from plugins.memory.hrr_memory.retrieval import FactRetriever
 
             match_query = FactRetriever._sanitize_fts_query(query)
             params: list = [match_query, min_trust]
